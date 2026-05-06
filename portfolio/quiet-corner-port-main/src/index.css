@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark portfolio palette */
+    --background: 0 0% 5.9%;            /* #0f0f0f */
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 7.5%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 7.5%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 7%;
+
+    --secondary: 0 0% 11%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 0 0% 11%;
+    --muted-foreground: 0 0% 62%;
+
+    --accent: 250 90% 66%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14%;
+    --input: 0 0% 14%;
+    --ring: 250 90% 66%;
+
+    --radius: 0.75rem;
+
+    /* Gradient + shadow tokens */
+    --gradient-accent: linear-gradient(135deg, hsl(220 90% 62%) 0%, hsl(265 85% 65%) 100%);
+    --gradient-text: linear-gradient(135deg, hsl(210 100% 75%) 0%, hsl(265 90% 75%) 100%);
+    --shadow-glow: 0 10px 40px -12px hsl(250 90% 60% / 0.45);
+
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+
+    --primary: 0 0% 8%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 15%;
+
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 250 90% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 250 90% 60%;
+
+    --gradient-text: linear-gradient(135deg, hsl(220 90% 50%) 0%, hsl(265 85% 55%) 100%);
+    --shadow-glow: 0 10px 40px -12px hsl(250 90% 50% / 0.35);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  html.light { color-scheme: light; }
+  html:not(.light) { color-scheme: dark; }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+  }
+  ::selection {
+    background: hsl(var(--accent) / 0.35);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-gradient-accent {
+    background: var(--gradient-accent);
+  }
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  /* Scroll fade-in */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
